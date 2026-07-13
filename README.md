@@ -1,4 +1,4 @@
-# Robotics Club Store Manager
+# Robotics Club Store
 
 A lightweight inventory and equipment management system developed for the **Robotics Club, Institute of Engineering (IOE), Purwanchal Campus**.
 
