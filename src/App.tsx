@@ -88,7 +88,7 @@ function App() {
 
         const mappedItems: InventoryItem[] = (data || []).map((dbItem: DbItem) => {
           const dbBorrows = dbItem.borrow_records || [];
-          
+
           // Calculate borrowed quantity from borrow_records:
           // SUM(quantity) WHERE status = 'Borrowed'
           const borrowedQty = dbBorrows
@@ -363,17 +363,17 @@ function App() {
       setSelectedItem((prev) =>
         prev
           ? {
-              ...prev,
-              borrows: (data || []).map((r) => ({
-                id: String(r.id),
-                borrowedBy: r.borrowed_by,
-                quantity: r.quantity,
-                borrowDate: r.borrowed_date,
-                status: r.status,
-                notes: r.notes || '',
-                returnDate: r.returned_date || undefined,
-              })),
-            }
+            ...prev,
+            borrows: (data || []).map((r) => ({
+              id: String(r.id),
+              borrowedBy: r.borrowed_by,
+              quantity: r.quantity,
+              borrowDate: r.borrowed_date,
+              status: r.status,
+              notes: r.notes || '',
+              returnDate: r.returned_date || undefined,
+            })),
+          }
           : null
       );
     } catch (e: unknown) {
@@ -398,17 +398,17 @@ function App() {
       setSelectedItem((prev) =>
         prev
           ? {
-              ...prev,
-              borrows: (data || []).map((r) => ({
-                id: String(r.id),
-                borrowedBy: r.borrowed_by,
-                quantity: r.quantity,
-                borrowDate: r.borrowed_date,
-                status: r.status,
-                notes: r.notes || '',
-                returnDate: r.returned_date || undefined,
-              })),
-            }
+            ...prev,
+            borrows: (data || []).map((r) => ({
+              id: String(r.id),
+              borrowedBy: r.borrowed_by,
+              quantity: r.quantity,
+              borrowDate: r.borrowed_date,
+              status: r.status,
+              notes: r.notes || '',
+              returnDate: r.returned_date || undefined,
+            })),
+          }
           : null
       );
     } catch (e: unknown) {
@@ -461,7 +461,7 @@ function App() {
 
   const handleReturnRecord = async (borrowId: string) => {
     if (!selectedItem) return;
-    
+
     const recordToReturn = selectedItem.borrows.find((b) => b.id === borrowId);
     if (!recordToReturn) return;
 
@@ -521,7 +521,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 text-slate-900 antialiased font-sans">
-      
+
       {/* HEADER */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -546,7 +546,7 @@ function App() {
                 className="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/15 transition-all"
               />
             </div>
-            <button 
+            <button
               onClick={openAddModal}
               className="inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow active:scale-97 transition-all duration-150 whitespace-nowrap"
             >
@@ -556,7 +556,7 @@ function App() {
               </svg>
               Add Item
             </button>
-            <button 
+            <button
               onClick={() => supabase.auth.signOut()}
               className="inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 active:scale-97 transition-all duration-150 whitespace-nowrap shadow-sm hover:shadow"
             >
@@ -568,7 +568,7 @@ function App() {
 
       {/* MAIN CONTAINER */}
       <main className="max-w-7xl w-full mx-auto px-6 py-8 flex-1">
-        
+
         {/* STATS SECTION */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-white border border-slate-200 rounded-xl p-5 flex items-center gap-4 shadow-sm hover:translate-y-[-2px] transition-transform duration-200">
@@ -655,7 +655,7 @@ function App() {
                 <h3 className="font-heading font-semibold text-lg text-slate-900 mb-1">Failed to Load Inventory</h3>
                 <p className="text-sm text-slate-500 max-w-[20rem] mx-auto leading-relaxed">{error}</p>
               </div>
-              <button 
+              <button
                 onClick={triggerRefresh}
                 className="inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm active:scale-97 transition-all duration-150"
               >
@@ -674,7 +674,7 @@ function App() {
                   No inventory items match your search term or inventory is currently empty. Try checking spelling or add a new item.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={openAddModal}
                 className="inline-flex items-center justify-center gap-2 text-sm font-medium px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm active:scale-97 transition-all duration-150"
               >
@@ -705,7 +705,7 @@ function App() {
 
       {/* FOOTER */}
       <footer className="text-center py-8 border-t border-slate-200 bg-white text-xs text-slate-400 font-medium">
-        <p>Robotics Club Store Manager Prototype &bull; Client-Side Dashboard</p>
+        <p>Robotics Club &bull; Developed by <a href="https://github.com/HimalBhandari05/" target="_blank" rel="noopener noreferrer">Himal Bhandari</a></p>
       </footer>
 
       {/* MODALS */}
@@ -784,7 +784,7 @@ function App() {
               <div>
                 <div className="text-[0.725rem] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Equipment Item</div>
                 <div className="text-base font-semibold text-slate-900 mb-3">{selectedItem.name}</div>
-                
+
                 <div className="text-[0.725rem] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Available to Borrow</div>
                 <div className="text-base font-semibold text-slate-900 mb-3">{selectedItem.availableQuantity}</div>
               </div>
@@ -875,7 +875,7 @@ function App() {
             <div className="px-6 py-5">
               <div className="text-[0.725rem] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Equipment Item</div>
               <div className="text-base font-semibold text-slate-900 mb-4">{selectedItem.name}</div>
-              
+
               <div className="text-[0.725rem] uppercase tracking-wider text-slate-400 font-semibold mb-2.5">Active Borrow Records</div>
               <div className="flex flex-col gap-4 max-h-[350px] overflow-y-auto pr-1">
                 {selectedItem.borrows.filter(r => r.status === 'Borrowed').length === 0 ? (
@@ -928,7 +928,7 @@ function App() {
             <div className="px-6 py-5">
               <div className="text-[0.725rem] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Equipment Item</div>
               <div className="text-base font-semibold text-slate-900 mb-4">{selectedItem.name}</div>
-              
+
               <div className="flex flex-col gap-4 max-h-[380px] overflow-y-auto pr-1">
                 {selectedItem.borrows.length === 0 ? (
                   <p className="text-sm text-slate-400 text-center py-8">No borrow records found.</p>
@@ -939,11 +939,10 @@ function App() {
                       <div key={r.id} className="bg-slate-50 border border-slate-202 rounded-lg p-4 flex flex-col gap-2">
                         <div className="flex justify-between items-center gap-2">
                           <span className="font-semibold text-slate-900 text-sm">Borrowed by {r.borrowedBy}</span>
-                          <span className={`text-[0.65rem] font-semibold px-2 py-0.5 rounded-full border uppercase tracking-wider ${
-                            isBorrowed 
-                              ? 'bg-rose-50 text-rose-600 border-rose-100' 
-                              : 'bg-emerald-50 text-emerald-600 border-emerald-100'
-                          }`}>
+                          <span className={`text-[0.65rem] font-semibold px-2 py-0.5 rounded-full border uppercase tracking-wider ${isBorrowed
+                            ? 'bg-rose-50 text-rose-600 border-rose-100'
+                            : 'bg-emerald-50 text-emerald-600 border-emerald-100'
+                            }`}>
                             {r.status}
                           </span>
                         </div>
@@ -1040,13 +1039,13 @@ function App() {
           }
 
           return (
-            <div 
+            <div
               key={toast.id}
               className={`pointer-events-auto min-w-[280px] max-w-[400px] bg-white border border-slate-200 border-l-[4px] ${borderColors} p-3.5 rounded-lg shadow-xl flex items-center gap-3 text-sm text-slate-800`}
             >
               <span className={textColors}>{icon}</span>
               <span className="font-medium flex-1">{toast.message}</span>
-              <button 
+              <button
                 onClick={() => setToasts((prev) => prev.filter((t) => t.id !== toast.id))}
                 className="text-slate-400 hover:text-slate-600 transition-colors p-0.5 rounded"
                 aria-label="Close toast"
